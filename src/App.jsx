@@ -338,6 +338,14 @@ export default function App() {
     setStatusMessage("Tap anywhere to enable the microphone.");
   };
 
+  useEffect(() => {
+    return () => {
+      if (listeningRef.current) {
+        stopListening();
+      }
+    };
+  }, []);
+
   return (
     <MotionConfig reducedMotion="user">
       <div
