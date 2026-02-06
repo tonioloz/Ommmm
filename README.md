@@ -1,6 +1,6 @@
-# Humm
+# Ommmm
 
-Humm is a client-side audio-reactive canvas experience. Press start, speak, and the background visuals respond to the intensity of your voice.
+Ommmm is a client-side audio-reactive canvas experience. Press start, speak, and the background visuals respond to the intensity of your voice.
 
 ## Run locally
 
@@ -24,4 +24,3 @@ Humm is a client-side audio-reactive canvas experience. Press start, speak, and 
    npm run build
    ```
 2. Deploy the `dist/` output to Vercel (zero config needed for Vite).
-

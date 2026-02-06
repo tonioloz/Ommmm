@@ -43,7 +43,7 @@ export default function App() {
   const [permission, setPermission] = useState("idle");
   const [level, setLevel] = useState(0);
   const [moodValue, setMoodValue] = useState(0);
-  const [sensitivity, setSensitivity] = useState(1.2);
+  const [sensitivity, setSensitivity] = useState(0.6);
   const [statusMessage, setStatusMessage] = useState(
     "Tap anywhere to enable the microphone."
   );
@@ -275,14 +275,15 @@ export default function App() {
       const data = audioRef.current.data;
       if (!analyser || !data) return;
 
-      analyser.getByteTimeDomainData(data);
+      analyser.getFloatTimeDomainData(data);
       let sum = 0;
       for (let i = 0; i < data.length; i += 1) {
-        const value = (data[i] - 128) / 128;
+        const value = data[i];
         sum += value * value;
       }
       const rms = Math.sqrt(sum / data.length);
-      const adjusted = clamp(rms * sensitivity, 0, 1);
+      const gain = 0.3 + sensitivity * 1.5;
+      const adjusted = clamp(rms * gain, 0, 1);
 
       const history = smoothingRef.current;
       history.push(adjusted);
@@ -309,7 +310,7 @@ export default function App() {
       analyser.fftSize = 2048;
       const source = context.createMediaStreamSource(stream);
       source.connect(analyser);
-      const data = new Uint8Array(analyser.fftSize);
+      const data = new Float32Array(analyser.fftSize);
 
       audioRef.current = { context, analyser, source, data };
       smoothingRef.current = [];
@@ -396,8 +397,8 @@ export default function App() {
                     <input
                       id="sensitivity"
                       type="range"
-                      min="0.6"
-                      max="2.2"
+                      min="0.4"
+                      max="1.6"
                       step="0.05"
                       value={sensitivity}
                       onChange={(event) => setSensitivity(Number(event.target.value))}
