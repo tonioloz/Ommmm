@@ -43,7 +43,7 @@ export default function App() {
   const [permission, setPermission] = useState("idle");
   const [level, setLevel] = useState(0);
   const [moodValue, setMoodValue] = useState(0);
-  const [sensitivity, setSensitivity] = useState(0.6);
+  const [sensitivity, setSensitivity] = useState(1.1);
   const [statusMessage, setStatusMessage] = useState(
     "Tap anywhere to enable the microphone."
   );
