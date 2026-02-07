@@ -48,7 +48,7 @@ Una experiencia visual audio-reactiva en el navegador: el sonido se transforma e
 
 ## Licencia
 
-Licencia abierta para todos.
+Licencia abierta para todos, con atribución obligatoria al autor. Si usas este proyecto o partes de él, debes dar crédito a Antonio Lozano.
 
 ## Autor
 
